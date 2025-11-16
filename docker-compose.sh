@@ -1,17 +1,8 @@
-vim .bashrc
-export PATH=$PATH:/usr/local/bin/
-source .bashrc
-
-# Download the current stable release of Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-# Apply executable permissions
-sudo chmod +x /usr/local/bin/docker-compose
-# Create a symbolic link
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-
-# Install using pip (Python package manager)
-sudo yum install -y python3-pip
-sudo pip3 install docker-compose
+sudo yum install -y docker && \
+sudo mkdir -p /usr/libexec/docker/cli-plugins && \
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-linux-x86_64 -o /usr/libexec/docker/cli-plugins/docker-compose && \
+sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose && \
+echo "alias docker-compose='docker compose'" >> ~/.bashrc && source ~/.bashrc
 
 #check version
 docker-compose --version
